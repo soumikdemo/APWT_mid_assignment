@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Alter Employer Information</title>
+</head>
+<body>
+	<h1>Employer Information</h1>
+
+	<a href="/home">Back</a> | 
+	<a href="/logout">logout</a> 
+	<br>
+
+	<table border="1">
+		<tr>
+			<td>Username</td>
+			<td>Password</td>
+			<td>Employer Name</td>
+			<td>Company Name</td>
+			<td>Contact Numeber</td>
+			<td>Alter</td>
+		</tr>
+
+		<% 
+			empList.forEach( function(std){ %>
+			<tr>
+				<td><%= std.username %></td>
+				<td><%= std.password %></td>
+				<td><%= std.emp_name %></td>
+				<td><%= std.comp_name %></td>
+				<td><%= std.contact_no %></td>
+				<td>
+					<a href="/admin/employerEdit/<%= std.id %>">Edit</a> |
+					<a href="/admin/employerDelete/<%= std.id %>">Delete</a>
+				</td>
+			</tr>
+
+		<%
+			}); 
+		%>
+		
+	</table>
+
+</body>
+</html>
