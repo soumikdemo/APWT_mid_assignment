@@ -58,10 +58,18 @@ router.post('/create_post', (req, res)=>{
 		details: req.body.details
 	}
 
-	console.log(obj);
-	
 	userModel.createNewThread(id, obj, function(status){
 		if(status == true){
+
+			userModel.getThreadid(id, obj.name, function(set){
+				console.log("req table threadid "+set[0].threadid);
+				var postid = set[0].threadid;
+
+				userModel.createPostRequest(id, postid, function(result){
+					console.log("insert into req table "+result);
+				});
+			});
+
 			console.log("Created successfully and requested for admin approval."); 
 			res.send('<p>Created successfully</p>');
 		}else{

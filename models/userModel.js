@@ -63,7 +63,33 @@ module.exports= {
 		});
 	},
 
+	getThreadid: function(id, name, callback){
+		var sql = "select threadid from thread where name='"+name+"'and createdby='"+id+"'";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
 
+	createPostRequest: function(id, threadid, callback){
+		var sql = "INSERT INTO request VALUES('"+null+"','"+id+"','"+threadid+"','create','"+false+"','"+false+"')";
+		db.execute(sql, function(status){
+			callback(status);
+		});
+	},
+
+	getRequests: function(callback){
+		var sql = "select * from request";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
+
+	getThreadInfo: function(threadid, callback){
+		var sql = "select * from thread where threadid='"+threadid+"'";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
 
 
 

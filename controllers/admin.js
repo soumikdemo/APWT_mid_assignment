@@ -92,13 +92,19 @@ router.post('/update_info', (req, res)=>{
 });
 
 
+router.get('/manage_request', (req, res)=>{
+	userModel.getRequests(function(results){
+		res.render('admin/manage_request', {list: results});
+	});
+});
 
 
+router.get('/view_thread/:id', (req, res)=>{
+	var threadid = req.params.id; 
 
-
-router.get('/delete/:id', (req, res)=>{
-	var user = {username: 'alamin', password: '123', email: 'email@gmail.com'};
-	res.render('user/delete', user);
+	userModel.getThreadInfo(threadid, function(results){
+		res.render('admin/view_thread', {obj: results});
+	});
 });
 
 router.post('/delete/:id', (req, res)=>{
