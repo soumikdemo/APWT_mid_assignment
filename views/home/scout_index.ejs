@@ -2,16 +2,26 @@
 <html>
 <head>
 	<title>Home page</title>
-	<link rel="stylesheet" type="text/css" href="/abc/css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1>Welcome, <%= username %></h1>
-    <h3>Your ID, <%= id %></h3>
-    <h3>user Type: <%= type %></h3>
+	<div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto">
+                <h1>Welcome, <%= user[0].fullname %></h1>
+				<h3>Your ID, <%= user[0].id %></h3>
+				<h3>user Type: <%= user[0].type %></h3><br>
 
-	<a href="/employer/create">Add New Job</a> | 
-	<a href="/employer/jobList">Job list</a> | 
-	<a href="/logout">logout</a> 
+				<a href="/admin/create_user">Create a post</a> | 
+				<a href="/admin/remove_user">Your posts</a><br><br>
+				
+				<a href="/admin/remove_user">Manage Posts/threads</a><br><br><br>
+				<a href="/logout">logout</a> 
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

@@ -18,6 +18,7 @@ router.post('/', (req, res)=>{
 		if(typeof results!="undefined"){
 			res.cookie('email', req.body.email); 
 			res.cookie('type', results[0].type); 
+			res.cookie('id', results[0].id); 
 			
 			//console.log(typeof results);
 			//console.log(results);

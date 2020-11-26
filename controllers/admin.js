@@ -60,44 +60,43 @@ router.get('/remove_user/:id', (req, res)=>{
 	});
 });
 
-router.post('/employerEdit/:id', (req, res)=>{
-	var empObj = {
-		id: req.body.id,
-		username: req.body.username,
-		password: req.body.password, 
-		type: 'employer',
-		emp_name: req.body.fullname,
-		comp_name: req.body.compName,
-		contact_no: req.body.contactNo
+router.get('/update_info', (req, res)=>{
+	var id = req.cookies['id'];
+
+	userModel.getUserDataByid(id, function(results){
+		res.render('admin/update_info', {user: results});
+	});
+
+});
+
+router.post('/update_info', (req, res)=>{
+	var id = req.cookies['id'];
+
+	var obj = {
+		email: req.body.email,
+        password: req.body.password, 
+        fullname: req.body.fullname, 
+		contactno: req.body.contactno,
+		country: req.body.country
 	}
 
-	userModel.updateEmployer(empObj, function(status){
+	console.log(obj);
+
+	userModel.updateUserInfo(id, obj, function(status){
 		if(status == true){
 			console.log("Updated successfully"); 
-			//var submitted = true;
-			var alert = "<script>alert('Updated successfully!');</script>";
-
-			var empId = req.params.id;
-			userModel.getEmployerDataById(empId, function(results){
-		
-				var empObj = {
-					id: results[0].id,
-					username: results[0].username,
-					password: results[0].password,
-					emp_name: results[0].emp_name,
-					comp_name: results[0].comp_name,
-					contact_no: results[0].contact_no
-				}
-		
-				res.render('admin/employerEdit', {employer: empObj, alert: alert});
-			});
-
-			//res.redirect('admin/employerEdit');
+			res.send('<p>Updated successfully</p>');
 		}else{
 			console.log("Data update error", status);
+			res.send('<p>Data update error</p>');
         }
 	});
 });
+
+
+
+
+
 
 router.get('/delete/:id', (req, res)=>{
 	var user = {username: 'alamin', password: '123', email: 'email@gmail.com'};

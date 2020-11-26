@@ -10,14 +10,19 @@
 	<div class="container">
         <div class="row">
             <div class="col-sm-6 mx-auto">
-                <h1>Welcome, <%= user[0].fullname %></h1>
-				<h3>Your ID, <%= user[0].id %></h3>
-				<h3>user Type: <%= user[0].type %></h3><br>
-
-				<a href="/admin/create_user">Add New User</a> | 
-				<a href="/admin/remove_user">Remove User</a><br><br>
+				<h1>Welcome, <%= user[0].fullname %></h1>
+				<span class="border border-light">
+					Your ID, <%= user[0].id %> <br> user Type: <%= user[0].type %><br>
+					<a href="/admin/update_info">Update personal information</a><br><br>
+				</span>
 				
-				<a href="/admin/remove_user">Manage Posts/threads</a><br><br><br>
+				<div class="list-group">
+					<a href="/admin/create_user" class="list-group-item list-group-item-action">Add New User</a>
+					<a href="/admin/remove_user" class="list-group-item list-group-item-action">Remove User</a>
+					<a href="/admin/remove_user" class="list-group-item list-group-item-action">Manage Posts/threads</a>
+				</div>
+							
+				<br><br><br>
 				<a href="/logout">logout</a> 
             </div>
         </div>
