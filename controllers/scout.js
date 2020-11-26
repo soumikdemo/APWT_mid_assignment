@@ -3,12 +3,57 @@ const userModel = require.main.require('./models/userModel');
 const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{
-	if(req.cookies['uname'] == null){
+	if(req.cookies['email'] == null){
 		res.redirect('/login');
 	}else{
 		next();
 	}
 });
+
+
+router.get('/update_info', (req, res)=>{
+	var id = req.cookies['id'];
+
+	userModel.getUserDataByid(id, function(results){
+		res.render('scout/update_info', {user: results});
+	});
+
+});
+
+router.post('/update_info', (req, res)=>{
+	var id = req.cookies['id'];
+
+	var obj = {
+		email: req.body.email,
+        password: req.body.password, 
+        fullname: req.body.fullname, 
+		contactno: req.body.contactno,
+		country: req.body.country
+	}
+
+	userModel.updateUserInfo(id, obj, function(status){
+		if(status == true){
+			console.log("Updated successfully"); 
+			res.send('<p>Updated successfully</p>');
+		}else{
+			console.log("Data update error", status);
+			res.send('<p>Data update error</p>');
+        }
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 router.get('/create', (req, res)=>{

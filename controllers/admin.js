@@ -80,8 +80,6 @@ router.post('/update_info', (req, res)=>{
 		country: req.body.country
 	}
 
-	console.log(obj);
-
 	userModel.updateUserInfo(id, obj, function(status){
 		if(status == true){
 			console.log("Updated successfully"); 
