@@ -56,6 +56,13 @@ module.exports= {
 		});
 	},
 
+	createNewThread: function(id, obj, callback){
+		var sql = "INSERT INTO thread VALUES('"+null+"','"+obj.name+"','"+obj.genre+"','"+obj.country+"','"+obj.cost+"','"+obj.details+"','"+false+"','"+id+"')";
+		db.execute(sql, function(status){
+			callback(status);
+		});
+	},
+
 
 
 

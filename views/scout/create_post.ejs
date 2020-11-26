@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create new post</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+	<div class="container">
+        <div class="row">
+            <div class="mx-auto">
+                <form method="post">
+					<fieldset>
+						<legend>Create new post</legend>
+						<table>
+							<tr>
+								<td>Place or Thread Name:</td>
+								<td><input type="text" name="name"></td>
+							</tr>
+							<tr>
+								<td>Genre:</td>
+								<td><input type="text" name="genre"></td>
+							</tr>
+							<tr>
+								<td>Place of country:</td>
+								<td><input type="text" name="country"></td>
+							</tr>
+							<tr>
+								<td>Probable Cost ($):</td>
+								<td><input type="text" name="cost"></td>
+							</tr>
+							<tr>
+								<td>Description:</td>
+								<td>
+									<textarea size="50" class="form-control" rows="5" name="details" maxlength="1000" placeholder="maxlength 1000 characters.."></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td align="right"><input align="right" type="submit" name="create" value="Create"></td>
+							</tr>
+						</table>
+					</fieldset>
+				</form> 
+            </div>
+        </div>
+    </div>
+	
+
+</body>
+</html>

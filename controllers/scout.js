@@ -36,8 +36,37 @@ router.post('/update_info', (req, res)=>{
 			console.log("Updated successfully"); 
 			res.send('<p>Updated successfully</p>');
 		}else{
-			console.log("Data update error", status);
+			console.log("Data update error");
 			res.send('<p>Data update error</p>');
+        }
+	});
+});
+
+
+router.get('/create_post', (req, res)=>{
+	res.render('scout/create_post');
+});
+
+router.post('/create_post', (req, res)=>{
+	var id = req.cookies['id'];
+
+	var obj = {
+		name: req.body.name,
+        genre: req.body.genre, 
+        country: req.body.country, 
+		cost: req.body.cost,
+		details: req.body.details
+	}
+
+	console.log(obj);
+	
+	userModel.createNewThread(id, obj, function(status){
+		if(status == true){
+			console.log("Created successfully and requested for admin approval."); 
+			res.send('<p>Created successfully</p>');
+		}else{
+			console.log("Post create error");
+			res.send('<p>Post create error</p>');
         }
 	});
 });
@@ -53,25 +82,6 @@ router.post('/update_info', (req, res)=>{
 
 
 
-
-
-
-router.get('/create', (req, res)=>{
-
-	var empId = req.session.userid;
-	//console.log(empId);
-	res.render('employer/create', {id: empId});
-
-});
-
-router.post('/create', (req, res)=>{
-
-/* 	res.send('New user info:'+
-				"<br> Username: "+req.body.username+
-				"<br> Password: "+req.body.password+
-				"<br> Email: "+req.body.email
-			); */
-});
 
 
 router.get('/jobList', (req, res)=>{
