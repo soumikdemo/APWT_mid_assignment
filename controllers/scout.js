@@ -80,26 +80,26 @@ router.post('/create_post', (req, res)=>{
 });
 
 
+router.get('/post_list', (req, res)=>{
+	var id = req.cookies['id'];
 
-
-
-
-
-
-
-
-
-
-
-
-router.get('/jobList', (req, res)=>{
-	var employerId = req.session.userid;
-
-	userModel.getAllJoblistById(employerId, function(results){
-		res.render('employer/jobList', {jobs: results});
+	userModel.getThreadlistByScoutid(id, function(results){
+		res.render('scout/post_list', {list: results});
 	});
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 router.get('/edit/:id', (req, res)=>{

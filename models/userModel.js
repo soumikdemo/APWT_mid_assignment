@@ -105,6 +105,16 @@ module.exports= {
 		});
 	},
 
+	getThreadlistByScoutid: function(id, callback){
+		var sql = "select * from thread where createdby='"+id+"' and publish='"+true+"'";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
+
+
+
+
 
 
 
@@ -120,15 +130,6 @@ module.exports= {
 
 	getEmployerDataById: function(empId, callback){
 		var sql = "select * from user where id='"+empId+"'";
-		db.getResults(sql, function(results){
-			callback(results);
-		});
-	},
-
-
-
-	getAllJoblistById: function(employerId, callback){
-		var sql = "select * from job where id='"+employerId+"'";
 		db.getResults(sql, function(results){
 			callback(results);
 		});
