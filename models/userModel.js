@@ -126,7 +126,12 @@ module.exports= {
 		});
 	},
 
-
+	getAllThreads: function(callback){
+		var sql = "select * from thread";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
 
 
 

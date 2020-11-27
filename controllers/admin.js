@@ -145,5 +145,26 @@ router.get('/approve_thread/:id', (req, res)=>{
 
 });
 
+
+router.get('/thread_edit/:id', (req, res)=>{
+	var threadid = req.params.id; 
+
+	userModel.getThreadInfo(threadid, function(results){
+		res.render('admin/thread_edit', {obj: results});
+	});
+});
+
+router.get('/allpost_list', (req, res)=>{
+	userModel.getAllThreads(function(results){
+		res.render('admin/allpost_list', {list: results});
+	});
+});
+
+
+
+
+
+
+
 module.exports = router;
 
