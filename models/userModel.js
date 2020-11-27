@@ -133,7 +133,12 @@ module.exports= {
 		});
 	},
 
-
+	updateThreadInfo: function(id, obj, callback){
+		var sql = "UPDATE thread SET name='"+obj.name+"',genre='"+obj.genre+"',country='"+obj.country+"',cost='"+obj.cost+"',details='"+obj.details+"' WHERE threadid='"+id+"'";
+		db.execute(sql, function(status){
+			callback(status);
+		});
+	},
 
 
 

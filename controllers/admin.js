@@ -154,6 +154,28 @@ router.get('/thread_edit/:id', (req, res)=>{
 	});
 });
 
+router.post('/thread_edit/:id', (req, res)=>{
+	var threadid = req.params.id; 
+	var obj = {
+		name: req.body.name,
+        genre: req.body.genre, 
+        country: req.body.country, 
+		cost: req.body.cost,
+		details: req.body.details
+	}
+
+	userModel.updateThreadInfo(threadid, obj, function(status){
+		if(status == true){
+			console.log("Updated successfully"); 
+			res.send('<p>Updated successfully</p>');
+		}else{
+			console.log("Data update error", status);
+			res.send('<p>Data update error</p>');
+        }
+	});
+});
+
+
 router.get('/allpost_list', (req, res)=>{
 	userModel.getAllThreads(function(results){
 		res.render('admin/allpost_list', {list: results});
