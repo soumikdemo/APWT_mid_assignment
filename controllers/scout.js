@@ -89,9 +89,21 @@ router.get('/post_list', (req, res)=>{
 
 });
 
+router.get('/view_thread/:id', (req, res)=>{
+	var threadid = req.params.id; 
 
+	userModel.getThreadInfo(threadid, function(results){
+		res.render('scout/view_thread', {obj: results});
+	});
+});
 
+/* router.get('/request_edit/:id', (req, res)=>{
+	var threadid = req.params.id; 
 
+	userModel.getThreadInfo(threadid, function(results){
+		res.render('scout/view_thread', {obj: results});
+	});
+}); */
 
 
 
