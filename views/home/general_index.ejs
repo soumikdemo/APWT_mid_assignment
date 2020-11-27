@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto">
+				<h1>Welcome, <%= user[0].fullname %></h1>
+                <span class="border border-light">
+					Your ID: <%= user[0].id %> <br> User Type: <%= user[0].type %><br>
+					<a href="/general/update_info">Update personal information</a><br><br>
+				</span>
+
+				<div class="list-group">
+					<a href="/general/post_list" class="list-group-item list-group-item-action">View Places</a>
+					<a href="/general/wishlist" class="list-group-item list-group-item-action">Wishlist</a>
+				</div>
+
+				<br><br><br>
+				<a href="/logout">logout</a> 
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
