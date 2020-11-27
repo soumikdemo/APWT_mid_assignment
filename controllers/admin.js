@@ -107,8 +107,36 @@ router.get('/view_thread/:id', (req, res)=>{
 	});
 });
 
-router.post('/delete/:id', (req, res)=>{
-	res.redirect('/home/userlist');
+router.get('/approve_thread/:id', (req, res)=>{
+	var threadid = req.params.id; 
+	var reqid, reqtype;
+	
+	userModel.getRequests(function(results){
+		results.forEach(element => {
+			if(element.threadid == threadid){
+				reqtype = element.reqtype;
+				reqid = element.reqid;
+			}
+		});
+
+		//console.log("var"+reqtype);
+	
+		if(reqtype == "create"){
+			userModel.publishThreadByid(threadid, function(status){
+				console.log("thread published"+status);
+			});
+			userModel.createRequestApproved(reqid, threadid, function(status){
+				console.log("req table change"+status);
+			});
+	
+			res.send('<p>approved</p>');
+		}else if(reqtype == "update"){
+	
+		}else{
+			console.log("Unspecified request type");
+		}
+	});
+
 });
 
 module.exports = router;

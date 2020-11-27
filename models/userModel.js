@@ -78,7 +78,7 @@ module.exports= {
 	},
 
 	getRequests: function(callback){
-		var sql = "select * from request";
+		var sql = "select * from request where checked='"+false+"'";
 		db.getResults(sql, function(results){
 			callback(results);
 		});
@@ -90,6 +90,21 @@ module.exports= {
 			callback(results);
 		});
 	},
+
+	publishThreadByid: function(threadid, callback){
+		var sql = "UPDATE thread SET publish='1' WHERE threadid='"+threadid+"'";
+		db.execute(sql, function(status){
+			callback(status);
+		});
+	},
+
+	createRequestApproved: function(reqid, threadid, callback){
+		var sql = "UPDATE request SET approved='1',checked='1' WHERE reqid='"+reqid+"' and threadid='"+threadid+"'";
+		db.execute(sql, function(status){
+			callback(status);
+		});
+	},
+
 
 
 
