@@ -154,6 +154,15 @@ module.exports= {
 		});
 	},
 
+	getApprovedUpdateRequests: function(id, callback){
+		var sql = "select * from request where approved='1' and id='"+id+"'";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
+
+
+
 
 
 

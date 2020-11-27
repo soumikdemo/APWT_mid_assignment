@@ -112,51 +112,18 @@ router.get('/request_edit/:id', (req, res)=>{
 	});
 });
 
+router.get('/update_postlist', (req, res)=>{
+	var scoutid = req.cookies['id'];
 
-
-
-
-
-
-
-
-
-router.get('/edit/:id', (req, res)=>{
-/* 	var user = {
-		username: 'test',
-		password: 'test',
-		email: 'alamin@aiub.edu'
-	}; */
-
-	var empId = req.params.id;
-	userModel.getEmployerDataById(empId, function(results){
-		
-		var empObj = {
-			id: results[0].id,
-			username: results[0].username,
-			password: results[0].password,
-			emp_name: results[0].emp_name,
-			comp_name: results[0].comp_name,
-			contact_no: results[0].contact_no
-		}
-		res.render('employer/editJob', {employer: empObj});
+	userModel.getApprovedUpdateRequests(scoutid, function(results){
+		userModel.getAllThreads(function(threads){
+			res.render('scout/update_postlist', {list: results, thread: threads});
+		});	
 	});
 });
 
-router.post('/edit/:id', (req, res)=>{
-	res.redirect('/home/userlist');
-});
 
 
-
-router.get('/delete/:id', (req, res)=>{
-	var user = {username: 'alamin', password: '123', email: 'email@gmail.com'};
-	res.render('user/delete', user);
-});
-
-router.post('/delete/:id', (req, res)=>{
-	res.redirect('/home/userlist');
-});
 
 module.exports = router;
 
