@@ -97,13 +97,20 @@ router.get('/view_thread/:id', (req, res)=>{
 	});
 });
 
-/* router.get('/request_edit/:id', (req, res)=>{
+router.get('/request_edit/:id', (req, res)=>{
 	var threadid = req.params.id; 
+	var scoutid = req.cookies['id'];
 
-	userModel.getThreadInfo(threadid, function(results){
-		res.render('scout/view_thread', {obj: results});
+	userModel.createUpdateRequest(scoutid, threadid, function(status){
+		if(status == true){
+			console.log("Post edit requested to admin"); 
+			res.send('<p>Post edit requested to admin</p>');
+		}else{
+			console.log("req error");
+			res.send('<p>req error</p>');
+        }
 	});
-}); */
+});
 
 
 

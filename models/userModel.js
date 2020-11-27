@@ -106,13 +106,18 @@ module.exports= {
 	},
 
 	getThreadlistByScoutid: function(id, callback){
-		var sql = "select * from thread where createdby='"+id+"' and publish='"+true+"'";
+		var sql = "select * from thread where createdby='"+id+"' and publish='1'";
 		db.getResults(sql, function(results){
 			callback(results);
 		});
 	},
 
-
+	createUpdateRequest: function(id, threadid, callback){
+		var sql = "INSERT INTO request VALUES('"+null+"','"+id+"','"+threadid+"','update','"+false+"','"+false+"')";
+		db.execute(sql, function(status){
+			callback(status);
+		});
+	},
 
 
 
