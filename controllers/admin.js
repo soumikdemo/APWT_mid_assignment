@@ -119,7 +119,7 @@ router.get('/approve_thread/:id', (req, res)=>{
 			}
 		});
 
-		//console.log("var"+reqtype);
+		console.log("var: "+reqtype);
 	
 		if(reqtype == "create"){
 			userModel.publishThreadByid(threadid, function(status){
@@ -130,7 +130,13 @@ router.get('/approve_thread/:id', (req, res)=>{
 			});
 	
 			res.send('<p>approved</p>');
+
 		}else if(reqtype == "update"){
+			userModel.updateRequestApproved(reqid, threadid, function(status){
+				console.log("update req table change "+status);
+			});
+
+			res.send('<p>approved</p>');
 	
 		}else{
 			console.log("Unspecified request type");

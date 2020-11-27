@@ -119,6 +119,14 @@ module.exports= {
 		});
 	},
 
+	updateRequestApproved: function(reqid, threadid, callback){
+		var sql = "UPDATE request SET approved='1',checked='1' WHERE reqid='"+reqid+"' and threadid='"+threadid+"'";
+		db.execute(sql, function(status){
+			callback(status);
+		});
+	},
+
+
 
 
 
