@@ -140,6 +140,21 @@ module.exports= {
 		});
 	},
 
+	deleteThreadById: function(id, callback){
+		var sql = "DELETE FROM thread WHERE threadid='"+id+"'";
+		db.execute(sql, function(status){
+			callback(status);
+		});
+	},
+
+	deleteRequestsByThreadid: function(id, callback){
+		var sql = "DELETE FROM request WHERE threadid='"+id+"'";
+		db.execute(sql, function(status){
+			callback(status);
+		});
+	},
+
+
 
 
 

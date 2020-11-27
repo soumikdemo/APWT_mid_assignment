@@ -182,7 +182,25 @@ router.get('/allpost_list', (req, res)=>{
 	});
 });
 
+router.get('/delete_thread/:id', (req, res)=>{
+	var threadid = req.params.id; 
 
+	userModel.deleteRequestsByThreadid(threadid, function(sts){
+		if(sts == true){
+			userModel.deleteThreadById(threadid, function(status){
+				if(status == true){
+					console.log("Deleted");
+					res.send('<p>Deleted</p>');
+				}else{
+					console.log("Data update error", status);
+					res.send('<p>Data update error</p>');
+				}
+			});
+		}else{
+			console.log("deleteRequestsByThreadid ERROR");
+		}
+	});
+});
 
 
 
